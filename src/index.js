@@ -1,12 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import './index.css'; 
+import Login from './Login'; 
+import Recherche from './Recherche';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
+import Reservations from './Reservations';
+import Navbar from './Navbar';
+import UserPanel from './UserPanel'; 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+function App({isLogged}){
+    return ( 
+        <>
+        <Router>
+            <Navbar></Navbar> 
+                <Route exact path="/" component={Login}/> 
+                <Route path= "/Recherche" component={Recherche}/>
+                <Route path= "/Reservations" component={Reservations}/>
+                <Route path= "/User" component={UserPanel}/>
+        </Router>
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+        </>
+    ) 
+}
+
+
+ReactDOM.render(<App isLogged={false} />, document.getElementById('root'));
